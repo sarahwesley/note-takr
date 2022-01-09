@@ -42,7 +42,8 @@ app.post("/api/notes", (req, res) => {
     res.json(noteList);
 });
 
-// to do if possible: delete note 
+// to do if possible: delete notes
+// delete note by id
 app.delete("/api/notes/:id", (req, res) => {
     let noteList = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
     let noteID = (req.params.id).toString();
