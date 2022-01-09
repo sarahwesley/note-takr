@@ -43,18 +43,17 @@ app.post("/api/notes", (req, res) => {
 });
 
 // to do if possible: delete note 
-// tried this code block, broke note saving function
-// app.delete("/api/notes/:id", (req, res) => {
-//     let noteList = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
-//     let noteID = (req.params.id).toString();
+app.delete("/api/notes/:id", (req, res) => {
+    let noteList = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+    let noteID = (req.params.id).toString();
 
-//     noteList = noteList.filter(selected => {
-//         return selected.id != noteID;
-//     });
+    noteList = noteList.filter(selected => {
+        return selected.id != noteID;
+    });
 
-//     fs.writeFileSync("./db/db.json", JSON.stringify(noteList));
-//     res.json(noteList);
-// });
+    fs.writeFileSync("./db/db.json", JSON.stringify(noteList));
+    res.json(noteList);
+});
 
 
 // app listener
