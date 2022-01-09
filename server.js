@@ -43,6 +43,18 @@ app.post("/api/notes", (req, res) => {
 });
 
 // to do if possible: delete note 
+app.delete("/api/notes/:id", (req, res) => {
+    let noteList = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+    let noteID = (req.params.id).toString();
+
+    noteList = noteList.filter(selected => {
+        return selected.id != noteID;
+    });
+
+    fs.writeFileSync("./db/db.json", JSON.stringify(noteList));
+    res.json(noteList);
+});
+
 
 // app listener
 app.listen(PORT, () => {
